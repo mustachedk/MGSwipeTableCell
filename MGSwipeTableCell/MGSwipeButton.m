@@ -71,8 +71,10 @@
     button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setImage:icon forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont fontWithName:@"Raleway-Regular" size:12.0];
+    button.layer.cornerRadius = 13;
     button.callback = callback;
     [button setEdgeInsets:insets];
     return button;

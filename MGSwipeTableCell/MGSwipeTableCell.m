@@ -81,6 +81,7 @@
     if (self = [super initWithFrame:CGRectMake(0, 0, containerWidth, maxSize.height)]) {
         _fromLeft = direction == MGSwipeDirectionLeftToRight;
         _container = [[UIView alloc] initWithFrame:self.bounds];
+
         _container.clipsToBounds = YES;
         _container.backgroundColor = [UIColor clearColor];
         [self addSubview:_container];
@@ -94,8 +95,9 @@
             if (!differentWidth) {
                 button.frame = CGRectMake(0, 0, maxSize.width, maxSize.height);
             }
-            button.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+//            button.autoresizingMask = UIViewAutoresizingFlexibleHeight;
             [_container insertSubview:button atIndex: _fromLeft ? 0: _container.subviews.count];
+            NSLog(@"width = %f, height = %f", _container.frame.size.width, _container.frame.size.height);
         }
         [self resetButtons];
     }
@@ -690,7 +692,8 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         _rightView = [[MGSwipeButtonsView alloc] initWithButtons:_rightButtons direction:MGSwipeDirectionRightToLeft differentWidth:_allowsButtonsWithDifferentWidth];
         _rightView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
         _rightView.cell = self;
-        _rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, 0, _rightView.bounds.size.width, _swipeOverlay.bounds.size.height);
+        _rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, _swipeOverlay.bounds.size.height/2 - 13, _rightView.bounds.size.width + 20, 26);
+        _rightView.layer.cornerRadius = 26/2;
         [_swipeOverlay addSubview:_rightView];
     }
 }
